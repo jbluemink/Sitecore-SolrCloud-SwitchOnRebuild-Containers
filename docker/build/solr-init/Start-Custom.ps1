@@ -28,7 +28,7 @@ Write-Host "Starting Custom, First run Start.ps1"
 .\Start.ps1 -SitecoreSolrConnectionString $SitecoreSolrConnectionString -SolrCorePrefix $SolrCorePrefix -SolrSitecoreConfigsetSuffixName $SolrSitecoreConfigsetSuffixName -SolrReplicationFactor $SolrReplicationFactor -SolrNumberOfShards $SolrNumberOfShards -SolrMaxShardsPerNodes $SolrMaxShardsPerNodes -SolrXdbSchemaFile $SolrXdbSchemaFile -SolrCollectionsToDeploy $SolrCollectionsToDeploy
 
 #start with SolrCollectionsToDeploy = SwitchOnRebuild
-.\Start-SwitchOnRebuildRai.ps1 -SitecoreSolrConnectionString $SitecoreSolrConnectionString -SolrCorePrefix $SolrCorePrefix -SolrSitecoreConfigsetSuffixName $SolrSitecoreConfigsetSuffixName -SolrReplicationFactor $SolrReplicationFactor -SolrNumberOfShards $SolrNumberOfShards -SolrMaxShardsPerNodes $SolrMaxShardsPerNodes -SolrXdbSchemaFile $SolrXdbSchemaFile -SolrCollectionsToDeploy SwitchOnRebuild
+.\Start-SwitchOnRebuild.ps1 -SitecoreSolrConnectionString $SitecoreSolrConnectionString -SolrCorePrefix $SolrCorePrefix -SolrSitecoreConfigsetSuffixName $SolrSitecoreConfigsetSuffixName -SolrReplicationFactor $SolrReplicationFactor -SolrNumberOfShards $SolrNumberOfShards -SolrMaxShardsPerNodes $SolrMaxShardsPerNodes -SolrXdbSchemaFile $SolrXdbSchemaFile -SolrCollectionsToDeploy SwitchOnRebuild
 
 Write-Host "Starting Custom - Create Aliases from C:\data\aliases-rebuild.json"
 
