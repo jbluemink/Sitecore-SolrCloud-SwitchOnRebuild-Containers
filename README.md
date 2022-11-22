@@ -6,7 +6,7 @@ this example include the 2 web databases.
  - sitecore-web-index_rebuild
  - sitecore-sxa-web-index-rebuild
  
-easy to adjust in the .json files
+easy to adjust in the .json and .config files
 
 Include code that add aliases,
 note: you can also use the setting name="ContentSearch.Solr.EnforceAliasCreation" value="true" in the Sitecore config.
@@ -28,7 +28,7 @@ foreach ($solrCoreSetName in ($solrSitecoreCoreNames + $solrXdbCoreNames)) {
     }
 }
 ```
-Code to check as in the Start.ps1. fromn the sitecore-xp0-solr-init
+Code to check as in the Start.ps1. from the sitecore-xp0-solr-init
 
 ```
 foreach ($solrCoreName in ($solrSitecoreCoreNames + $solrXdbCoreNames)) {
