@@ -1,6 +1,8 @@
 # Sitecore-SolrCloud-SwitchOnRebuild-Containers
 Sitecore SwitchOnRebuild Container Solr Cloud Example config also usable for Sitecore Managed Cloud with SearchStack
 
+[Read more on : switch solr indexes strategy on searchstax](https://uxbee.nl/actueel/switch-solr-indexes-strategy-on-searchstax)
+
 Tested with the sitecore-xp0-solr-init container for Sitecore 10.2 and SXA
 this example include the 2 web databases.
  - sitecore-web-index_rebuild
