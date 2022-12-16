@@ -44,16 +44,17 @@ $env:SOLR_PASSWORD = $solrContext.SolrPassword
 if(Test-Path -Path "C:\data\aliases-SwitchOnRebuild.json") {
     $collectionAliases = [ordered]@{}
     $collectionAliases = ((Get-Content C:\data\aliases-SwitchOnRebuild.json | Out-String | ConvertFrom-Json ) )
-    $solrAliasCollections = (Invoke-RestMethod -Uri "$SolrEndpoint/admin/collections?action=LISTALIASES&omitHeader=true" -Method Get -Credential (Get-SolrCredential)).collections
-    $solrCollections = (Invoke-RestMethod -Uri "$SolrEndpoint/admin/collections?action=LIST&omitHeader=true" -Method Get -Credential (Get-SolrCredential)).collections
-
+    
+    $solrCollections      = (Invoke-RestMethod -Uri "$SolrEndpoint/admin/collections?action=LIST&omitHeader=true" -Method Get -Credential (Get-SolrCredential)).collections
+    [string]$solrAliasCollections = (Invoke-RestMethod -Uri "$SolrEndpoint/admin/collections?action=LISTALIASES&omitHeader=true" -Method Get -Credential (Get-SolrCredential)).aliases
+    
     $hash = @{}
     $collectionAliases.psobject.properties | foreach{$hash[$_.Name]= $_.Value}
 
     foreach ($h in $hash.GetEnumerator()) {
-    	Write-Host "$($h.Name): $($h.Value)"
-        if ($solrAliasCollections -contains ('{0}{1}' -f  $SolrCorePrefix, $h.Value)) {
-	        Write-Information -MessageData "Aliase are already exist. '$h.Value'." -InformationAction:Continue
+    	Write-Host "checking $($h.Name) : $($h.Value)"
+        if ($solrAliasCollections -match ('{0}{1}' -f $SolrCorePrefix, $h.Value)) {
+	        Write-Information -MessageData "Aliase already exist. '$($h.Value)'." -InformationAction:Continue
     	} else {
     		if ($solrCollections -notcontains  ('{0}{1}' -f $SolrCorePrefix, $h.Name)) {
 		        Write-Information -MessageData "before creating Aliase '$($h.Value)' we need first create index '$($h.Name)'  with prefix '$SolrCorePrefix'" -InformationAction:Continue
@@ -65,3 +66,4 @@ if(Test-Path -Path "C:\data\aliases-SwitchOnRebuild.json") {
     }
 }
 Write-Host "End Custom - Create Aliases"
+
